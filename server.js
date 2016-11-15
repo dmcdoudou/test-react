@@ -7,6 +7,9 @@ var fs = require('fs');
 //启动服务
 var server = new WebpackDevServer(webpack(config), {
     publicPath: config.output.publicPath,
+    stats: {
+        colors: require('supports-color')
+    }
 });
 
 var dataurl = __dirname + '/data.json';
@@ -93,11 +96,11 @@ app.post('/api/edit/:id', function (req, res) {
                 status: true
             });
         } else {
-           return res.json({
+            return res.json({
                 msg: '操作失败，数据不存在',
                 data: null,
                 status: false
-            }); 
+            });
         }
 
 
